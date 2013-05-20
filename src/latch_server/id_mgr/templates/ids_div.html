@@ -1,0 +1,46 @@
+<div id="order" class="orderitems">
+    <div id="order_number">Your order number: {{ order.day_ordinal }}</div>
+    <div id="oitems" class="oitemslist">
+        <ol>
+            {% for oitem in order.orderitem_set.all %}
+            <li>
+                
+                    <div id="oitem" class="oitem">{{oitem.item.name}} {{oitem.display_price_as_ordered }} Notes: <input id="{{oitem.id}}" type="text" text_type="notestext" value="{{oitem.notes|escape}}"/> <input type="button" button_type="removeitem" id="{{oitem.id}}" value="Remove"/>
+                    </div>
+                    
+                    <div id="orderitemoptions" class="orderitemoptions">
+                    <ul>
+                    {% for optgrp in oitem.item.menuitemhasoptiongroup_set.all %}
+                        <li>
+                            {{optgrp.option_group.description}}
+                            <form>
+                            {% for menu_option in optgrp.option_group.menuoption_set.all %}
+
+                                {% for order_option in oitem.orderoption_set.all %}
+                                
+                                    {% ifequal menu_option.group.id order_option.option.group.id %}
+                                
+                                        {% ifequal menu_option.id order_option.option.id %}
+                            
+                                        <input id="{{oitem.id}}" type="radio" name="{{optgrp.option_group.name}}" value="{{menu_option.id}}" button_type="set_option" checked="checked" /> {{menu_option.name}}
+                                        {% else %}
+                                        <input id="{{oitem.id}}" type="radio" name="{{optgrp.option_group.name}}" value="{{menu_option.id}}" button_type="set_option" /> {{menu_option.name}}
+                                        {% endifequal %}
+                                    {% endifequal %}
+                                {% endfor %}
+                            {% endfor %}
+                            </form>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                
+            </li>
+            {% endfor %}
+        </ol>
+        <br/>
+        Items total: {{ order.display_total_items }}<br/>
+        Tax: {{order.display_tax}}<br/>
+        Order total: {{order.display_grand_total }}
+    </div> <!-- order items list -->
+</div>

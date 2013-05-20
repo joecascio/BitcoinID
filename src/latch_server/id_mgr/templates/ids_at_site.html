@@ -1,0 +1,14 @@
+<div id="site" class="siteids">
+    <div id="site">IDs at site: {{ site.domain }}</div>
+    <div id="identities" class="identities_list">
+        <ol>
+            {% for id_at_site in site.identityatsite_set.all %}
+            <li>
+                    <div id="identity" class="id_item">({{id_at_site.identity.public_key}}) <input type="button" button_type="login_with_id" id="{{id_at_site.identity.public_key}}" value="Login as {{id_at_site_identity.handle}} "/>
+                    </div>
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
+</div>
+                    

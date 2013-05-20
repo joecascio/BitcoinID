@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>acidMain</class>
+ <widget class="QMainWindow" name="acidMain">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>913</width>
+    <height>608</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>ACID</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>40</y>
+      <width>651</width>
+      <height>371</height>
+     </rect>
+    </property>
+    <row>
+     <property name="text">
+      <string/>
+     </property>
+    </row>
+    <column>
+     <property name="text">
+      <string>Handle</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Description</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Bitcoin Address</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Balance</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Sites</string>
+     </property>
+    </column>
+    <item row="0" column="0">
+     <property name="text">
+      <string>joecascio</string>
+     </property>
+    </item>
+    <item row="0" column="1">
+     <property name="text">
+      <string>Major social media identity</string>
+     </property>
+    </item>
+    <item row="0" column="2">
+     <property name="text">
+      <string>1GczwUwhyPXy78odwxC4nEcaiufT2zb2jM</string>
+     </property>
+    </item>
+    <item row="0" column="3">
+     <property name="text">
+      <string>55.67btc</string>
+     </property>
+    </item>
+    <item row="0" column="4">
+     <property name="text">
+      <string>twitter.com, facebook.com</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QPushButton" name="newIDButton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>114</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>New ID</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>913</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+
+  "name": "Latch Login",
+  "description": "Detects whether a site accepts Latch logins, and if so, can call the Latch service on the local machine to generate and send an authentication message to the site.",
+  
+  "version": "1.0",
+  
+  "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["latch_content.js"]
+      }
+    ],
+    
+    "background": {
+        "scripts": ["latch_background.js"]
+      },
+
+  "permissions": [
+    "http://localhost:9000/"
+  ],
+  "browser_action": {
+    "default_icon": "keyhole.off.jpg",
+    "default_title": "Login with Latch",
+    "default_popup": "popup.html"
+  }
+}
