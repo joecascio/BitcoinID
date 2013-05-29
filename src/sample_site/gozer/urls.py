@@ -9,7 +9,10 @@ urlpatterns = patterns('',
     # url(r'^$', 'gozer.views.home', name='home'),
     # url(r'^gozer/', include('gozer.foo.urls')),
     url(r'home$', 'latch_auth.views.home'),
-    url(r'latch/query$', 'latch_auth.views.query'),
+    url(r'new_nonce$', 'latch_auth.views.new_nonce'),
+    url(r'login_state/(?P<pkey>.*)', 'latch_auth.views.login_state'),
+    url(r'log_in/(?P<pkey>.*)', 'latch_auth.views.log_in'),
+    url(r'register/(?P<pkey>.*)', 'latch_auth.views.register'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

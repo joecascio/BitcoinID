@@ -11,8 +11,8 @@ var latch = {
   
   showLatchResponse_: function (e) {
       var zr = e.target.responseText;
-      var txt = document.createTextNode(zr);
-      document.body.appendChild(txt);
+      var id_list = document.getElementById('ids_at_site');
+      id_list.innerHTML = zr;
       
   }
 };

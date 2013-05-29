@@ -20,6 +20,9 @@ DATABASES = {
     }
 }
 
+# LATCH URL to be embedded in link tag
+LATCH_URL = 'http://localhost:9001'
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
