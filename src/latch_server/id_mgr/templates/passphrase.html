@@ -1,0 +1,23 @@
+{% extends "xbase.html" %}
+{% block title %}Passphrase set/cancel{% endblock %}
+{% block content %}
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+
+{% if passphrase_available %}
+    <p>
+    
+    <form action="/passphrase/" method='POST'> {% csrf_token %} The wallet passphrase has been entered and validated. You can clear the passphrase from the Latch server with this button. 
+        <input type="submit" name='clear_passphrase' value="Clear Passphrase"/>
+    </form>
+    </p>
+{% else %}
+    <p>To enable the Latch server to sign login messages, you must enter the wallet passphrase. The passphrase is only stored in program memory, not written to disk, so it must be re-entered if this service is stopped and restarted.
+        <form action="/passphrase/" method='POST'> {% csrf_token %}
+            Input wallet passphrase: <input type='password' size=50 name='passphrase_input' /> 
+            <input type='submit' value="Enter passphrase"/>
+        </form>
+    </p>
+{% endif %}
+{% endblock %}

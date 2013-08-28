@@ -2,15 +2,28 @@
 <html lang="en">
 <head>
     
-    <title>Gozer The Gozerian</title>
-    <link id="latch_login" rel="latch.url" href="{{latch_url}}" nonce="{{nonce}}">
+    <title>Latcherz</title>
+    <link id="latch_login" rel="latch.url" href="{{latch_url}}">
     
 </head>
 
 <body>
-    You can login with Latch on this site.<br/> 
-    Just use the Latch browser extension.
-
+    <div id="account_info" >
+        <p style="text-align:right;">
+        {% if user.is_authenticated %}
+            Logged in as: <strong>{{ user.username }}</strong> <a href="/logout_user">Logout</a>
+        {% else %}
+            Login or create an account using your Latch browser extension!
+        {% endif %}
+        </p>
+    </div>
+    <div>
+    <hr/>
+    <p>
+    LATCHERZ is the registry of real-world names and Latch IDs.<br/> 
+    If you want any of your Latch IDs to be findable under a real-world name by search engines, register them with us, or look them up here!
+    </p>
+    </div>
 </body>
 
 </html>

@@ -21,6 +21,16 @@ class Identity(models.Model):
     email = models.EmailField(blank=True, max_length=254)
     def __unicode__(self):
         return u'%s : %s (%s %s %s)' % (self.handle, self.public_key, self.entity.first, self.entity.middle, self.entity.last)
+    
+    def get_handle(self):
+        if len(self.handle) > 0:
+            return self.handle
+        return self.entity.default_handle
+    
+    def get_email(self):
+        if len(self.email) > 0:
+            return self.email
+        return self.entity.default_email
 
 class Site(models.Model):
     domain = models.CharField(max_length=100) # include sub-domains. eg: blog.onlyzuul.org

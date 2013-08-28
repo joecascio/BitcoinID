@@ -7,9 +7,12 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^prove/$', 'latch.views.prove'), # expects a POST of the site's latch URL
-    # url(r'^latch/', include('latch.foo.urls')),
     url(r'ids_at_site/(?P<domain>.*)$', 'id_mgr.views.ids_at_site'),
+    url(r'^passphrase/$', 'id_mgr.views.passphrase'), 
+    url(r'^set_passphrase/$', 'id_mgr.views.set_passphrase'), 
+    url(r'^challenge_response/(?P<identity>.*)$', 'id_mgr.views.challenge_response'),
+    url(r'^register_id/$', 'id_mgr.views.register_id'),
+    # url(r'^latch/', include('latch.foo.urls')),
     
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

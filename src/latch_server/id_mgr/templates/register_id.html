@@ -1,0 +1,41 @@
+{% extends "xbase.html" %}
+{% block title %}Passphrase set/cancel{% endblock %}
+{% block content %}
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<div id="identities" class="identities_list">
+    {% if passphrase_available %}
+    <div id="registered">IDs registered at:<strong> {{ site }}</strong></div>
+    <ul>
+        {% for id_at_site in ids_at_site %}
+        <li>
+            {{id_at_site.handle}} ({{id_at_site.public_key}})
+        </li>
+        {% endfor %}
+    </ul>
+    
+    <div id="unregistered">IDs not registered at:<strong> {{ site }}</strong></div>
+    <form action="http://localhost:9000/register_id/?latch_url={{site}}" method='POST'> {% csrf_token %}
+    <ul>
+        {% for id_not_at_site in ids_not_at_site %}
+        <li>
+                <input type="submit" name="register_button" value="{{id_not_at_site.public_key}}">Register as {{id_not_at_site.handle}} ({{id_not_at_site.public_key}})</input> 
+        </li>
+        {% endfor %}
+    </ul>
+    </form>
+    {% else %}
+    <form action="http://localhost:9000/set_passphrase/" method='POST'> {% csrf_token %}
+        <p>Please enter your wallet passphrase to enable your bitcoin client to sign messages. This needs to be done once whenever the Latch server is restarted.
+         </p>
+        <p>
+        Input wallet passphrase: <input type='password' size=50 name='passphrase_input' /> 
+        <input type='submit' id='enter_passphrase' value="Enter passphrase">
+        </p>
+    </form>
+    {% endif %}
+</div>
+                
+
+{% endblock %}

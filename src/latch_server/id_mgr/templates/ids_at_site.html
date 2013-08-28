@@ -1,14 +1,28 @@
-<div id="site" class="siteids">
-    <div id="site">IDs registered at:<strong> {{ site }}</strong></div>
-    <div id="identities" class="identities_list">
-        <ul>
-            {% for id_at_site in identities_at_site %}
-            <li>
-                    <div id="identity" class="id_item"><input type="button" button_type="login_with_id" id="{{id_at_site.identity.public_key}}" value="Login as {{id_at_site.identity.handle}}" /> ({{id_at_site.identity.public_key}})
-                    </div>
-            </li>
-            {% endfor %}
-        </ul>
+<div id="identities" class="identities_list">
+    {% if passphrase_available %}
+    <div id="registered">IDs registered at:<strong> {{ site }}</strong></div>
+    <form action="http://localhost:9000/latch_login/" method='POST'> 
+    <ul>
+        {% for id_at_site in ids_at_site %}
+        <li>
+                <input type="button" button_type="login_with_id" name="login_button" id="{{id_at_site.public_key}}" value="Login as {{id_at_site.handle}} ({{id_at_site.public_key}})"/> 
+        </li>
+        {% endfor %}
+    </ul>
+
+    </form>
+        <input type="button" button_type="register_with_id" name="register_button" value="Register with a different ID at this site." /> 
+    </form>
+    {% else %}
+    <form action="http://localhost:9000/set_passphrase/" method='POST'>
+        <p>Please enter your wallet passphrase to enable your bitcoin client to sign messages. This needs to be done once whenever the Latch server is restarted.
+         </p>
+        <p>
+        Input wallet passphrase: <input type='password' size=50 name='passphrase_input' /> 
+        <input type='submit' id='enter_passphrase' value="Enter passphrase">
+        </p>
+    </form>
     </div>
+    {% endif %}
 </div>
-                    
+                

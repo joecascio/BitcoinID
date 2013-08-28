@@ -1,0 +1,9 @@
+<div id="unregistered">IDs not registered at:<strong> {{ site }}</strong></div>
+<form action="http://localhost:9000/latch_login/" method='POST'> 
+<ul>
+    {% for id_not_at_site in ids_not_at_site %}
+    <li>
+            <input type="button" button_type="register_with_id" name="register_button" id="{{id_not_at_site.public_key}}" value="Register as {{id_not_at_site.handle}} ({{id_not_at_site.public_key}})"/> 
+    </li>
+    {% endfor %}
+</ul>

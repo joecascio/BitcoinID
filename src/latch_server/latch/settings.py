@@ -20,6 +20,10 @@ DATABASES = {
     }
 }
 
+# Bitcoin service proxy login constants
+BTC_RPC_USER='bitcoinrpc'
+BTC_RPC_PW='HHHqJiuP1S8Ee8iKWWLHBPhvKz3zKoxTrM9TVEF8spND'
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.

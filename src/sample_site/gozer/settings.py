@@ -23,6 +23,13 @@ DATABASES = {
 # LATCH URL to be embedded in link tag
 LATCH_URL = 'http://localhost:9001'
 
+# Add a Latch auth backend
+AUTHENTICATION_BACKENDS=('django.contrib.auth.backends.ModelBackend', 'latch_auth.backend.LatchBackend')
+
+# Bitcoin service proxy login constants
+BTC_RPC_USER='bitcoinrpc'
+BTC_RPC_PW='HHHqJiuP1S8Ee8iKWWLHBPhvKz3zKoxTrM9TVEF8spND'
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -119,7 +126,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'latch_auth',

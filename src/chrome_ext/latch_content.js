@@ -1,6 +1,7 @@
 
 chrome.extension.onMessage.addListener(
     function(request, sender, sendResponse) {
+        //debugger;
         if (request.msg_type == 'request_latch_url')
         {
             var resp = { "latch_url":"" };
