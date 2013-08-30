@@ -20,11 +20,11 @@ DATABASES = {
     }
 }
 
-# LATCH URL to be embedded in link tag
-LATCH_URL = 'http://localhost:9001'
+# BTCID URL to be embedded in link tag
+BTCID_URL = 'http://localhost:9001'
 
 # Add a Latch auth backend
-AUTHENTICATION_BACKENDS=('django.contrib.auth.backends.ModelBackend', 'latch_auth.backend.LatchBackend')
+AUTHENTICATION_BACKENDS=('django.contrib.auth.backends.ModelBackend', 'btcid_auth.backend.BtcIDBackend')
 
 # Bitcoin service proxy login constants
 BTC_RPC_USER='bitcoinrpc'
@@ -129,7 +129,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'latch_auth',
+    'btcid_auth',
 )
 
 # A sample logging configuration. The only tangible logging

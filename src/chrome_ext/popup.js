@@ -1,5 +1,5 @@
-var hasLatch = false;
-var latch_url = "";
+var hasBitcoinIdentity = false;
+var btcid_url = "";
 var challenge = "";
 var current_tab = 0;
 var current_url = "";
@@ -8,7 +8,7 @@ function get_challenge()
 {
     var req = new XMLHttpRequest();
     // process synchronously
-    req.open("GET", latch_url + "/latch_challenge", false);
+    req.open("GET", btcid_url + "/btcid_challenge", false);
     req.send();
     if (req.status == 200)
     {
@@ -48,7 +48,7 @@ function login_w_id(e) {
     
     // now call the site with the signed message 
     areq = new XMLHttpRequest();
-    areq.open("POST", latch_url + "/latch_login/" + id, false);
+    areq.open("POST", btcid_url + "/btcid_login/" + id, false);
     areq.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
     areq.send(auth_data); // this contains the challenge, addendum, messsage and signature
     if (areq.status != 200) {
@@ -67,9 +67,9 @@ function login_w_id(e) {
 function register_w_id(e)
 {
     // var id = e.currentTarget.getAttribute('id');
-    // reload the current tab with the local latch server URL to 
+    // reload the current tab with the local btcid server URL to 
     // create a new id at site record
-    var url = "http://localhost:9000/register_id/" + "?latch_url=" + latch_url
+    var url = "http://localhost:9000/register_id/" + "?btcid_url=" + btcid_url
     chrome.tabs.update(current_tab, {url: url});
     window.close();
     
@@ -114,7 +114,7 @@ function register_w_id(e)
 //     
 //     // now call the site with the signed message 
 //     areq = new XMLHttpRequest();
-//     areq.open("POST", latch_url + "/latch_register/" + id, false);
+//     areq.open("POST", btcid_url + "/btcid_register/" + id, false);
 //     areq.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
 //     areq.send(auth_data); // this contains the challenge, addendum, messsage and signature
 //     if (areq.status != 200) {
@@ -136,7 +136,7 @@ function display_svr_response(html)
     id_list.innerHTML = html;
 }
 
-function showLatchResponse(e) {
+function showBitcoinIdentityResponse(e) {
     var zr = e.target.responseText;
     display_svr_response(zr);
     
@@ -154,10 +154,10 @@ function showLatchResponse(e) {
 
 }
 
-function requestLatch(latch_url) {
+function requestBitcoinIdentity(btcid_url) {
     var req = new XMLHttpRequest();
-    req.onload = showLatchResponse;
-    req.open("GET", "http://localhost:9000/ids_at_site/" + latch_url, true);
+    req.onload = showBitcoinIdentityResponse;
+    req.open("GET", "http://localhost:9000/ids_at_site/" + btcid_url, true);
     req.send();
 }
 
@@ -170,18 +170,18 @@ document.addEventListener('DOMContentLoaded', function () {
         {
             current_tab = tabs[0].id;
             current_url = tabs[0].url;
-            chrome.tabs.sendMessage(tabs[0].id, {msg_type: "request_latch_url"}, function(response) 
+            chrome.tabs.sendMessage(tabs[0].id, {msg_type: "request_btcid_url"}, function(response) 
             {
-                if (response.latch_url.length > 0)
+                if (response.btcid_url.length > 0)
                 {
-                    latch_url = response.latch_url
+                    btcid_url = response.btcid_url
                     
-                    // call the latch server
-                    requestLatch(response.latch_url);
+                    // call the btcid server
+                    requestBitcoinIdentity(response.btcid_url);
                 }
                 else
                 {
-                    display_svr_response("This site does not accept Latch logins or registrations.")
+                    display_svr_response("This site does not accept BitcoinIdentity logins or registrations.")
                 }
             });
                         

@@ -1,7 +1,7 @@
 <div id="identities" class="identities_list">
     {% if passphrase_available %}
     <div id="registered">IDs registered at:<strong> {{ site }}</strong></div>
-    <form action="http://localhost:9000/latch_login/" method='POST'> 
+    <form action="http://localhost:9000/btcid_login/" method='POST'> 
     <ul>
         {% for id_at_site in ids_at_site %}
         <li>
@@ -15,7 +15,7 @@
     </form>
     {% else %}
     <form action="http://localhost:9000/set_passphrase/" method='POST'>
-        <p>Please enter your wallet passphrase to enable your bitcoin client to sign messages. This needs to be done once whenever the Latch server is restarted.
+        <p>Please enter your wallet passphrase to enable your bitcoin client to sign messages. This needs to be done once whenever the BitcoinIdentity server is restarted.
          </p>
         <p>
         Input wallet passphrase: <input type='password' size=50 name='passphrase_input' /> 

@@ -155,14 +155,14 @@ def login_pp(request, domain, identity):
     
 def register_id(request):
     
-    latch_url = request.GET['latch_url']
-    print "latch_url", latch_url
+    btcid_url = request.GET['btcid_url']
+    print "btcid_url", btcid_url
     # the identity already exists, or this function wouldn't be called
     #id_obj = Identity.objects.get(public_key=identity)
     
-    # if IdentityAtSite.objects.filter(site__domain=latch_url, identity__public_key=identity).exists():
+    # if IdentityAtSite.objects.filter(site__domain=btcid_url, identity__public_key=identity).exists():
     #     return render_to_response('register_id.html', 
-    #     {'error_message': 'Id %s already registered at site %s' % (identity, latch_url)}, 
+    #     {'error_message': 'Id %s already registered at site %s' % (identity, btcid_url)}, 
     #     context_instance=RequestContext(request))        
     
     if request.method == 'POST':
@@ -174,9 +174,9 @@ def register_id(request):
             
             print "register post data:", request.POST
         
-            #if IdentityAtSite.objects.filter(identity=identity).filter(site__domain=latch_url).exists():
+            #if IdentityAtSite.objects.filter(identity=identity).filter(site__domain=btcid_url).exists():
             # create a record for this id and site
-            site, created = Site.objects.get_or_create(domain=latch_url)
+            site, created = Site.objects.get_or_create(domain=btcid_url)
     
     
             # # get or create the associative object
@@ -184,7 +184,7 @@ def register_id(request):
         
             # do the registration dance
             # get the challenge from the site
-            challenge = requests.get(latch_url + "/latch_challenge").text
+            challenge = requests.get(btcid_url + "/btcid_challenge").text
             try:
                 reg_data = _make_challenge_response(challenge, pkey, _passphrase)
             except:
@@ -198,7 +198,7 @@ def register_id(request):
             reg_data['last'] = id_obj.entity.last
             reg_data['suffix'] = id_obj.entity.suffix
     
-            resp = requests.post(latch_url + '/latch_register/' + pkey, data=reg_data, headers={'Content-Type': 'application/json;charset=UTF-8'})
+            resp = requests.post(btcid_url + '/btcid_register/' + pkey, data=reg_data, headers={'Content-Type': 'application/json;charset=UTF-8'})
             print "register_id, register return data", resp.text
             resp_data = json.loads(resp.text)
             if resp_data['result'] == 'error':
@@ -212,18 +212,18 @@ def register_id(request):
             ias.identity = id_obj
             ias.save()
             
-            redirect_url = latch_url + '/latch_register_complete'
+            redirect_url = btcid_url + '/btcid_register_complete'
             print 'redirect_url', redirect_url
             
             return HttpResponseRedirect(redirect_url)
 
     else: # GET and everything elses comes here
         # request.session['identity'] = identity
-        request.session['acceptor_domain'] = latch_url
-        ids_at_site = Identity.objects.filter(identityatsite__site__domain=latch_url)
+        request.session['acceptor_domain'] = btcid_url
+        ids_at_site = Identity.objects.filter(identityatsite__site__domain=btcid_url)
         ids_not_at_site = Identity.objects.exclude(id__in=ids_at_site)
         return render_to_response('register_id.html', 
-        {'site': latch_url, 'ids_at_site': ids_at_site, 'ids_not_at_site': ids_not_at_site,
+        {'site': btcid_url, 'ids_at_site': ids_at_site, 'ids_not_at_site': ids_not_at_site,
         'passphrase_available': _passphrase_available(), }, 
         context_instance=RequestContext(request))
             

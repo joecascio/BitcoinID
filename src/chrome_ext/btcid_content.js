@@ -2,19 +2,19 @@
 chrome.extension.onMessage.addListener(
     function(request, sender, sendResponse) {
         //debugger;
-        if (request.msg_type == 'request_latch_url')
+        if (request.msg_type == 'request_btcid_url')
         {
-            var resp = { "latch_url":"" };
+            var resp = { "btcid_url":"" };
             //window.alert("in content script");
-            var latch = document.getElementById("latch_login");
+            var btcid = document.getElementById("btcid_login");
             //window.alert("getElementById did not throw");
-            if (latch != null)
+            if (btcid != null)
             {
-                resp.latch_url = latch.getAttribute("href");
+                resp.btcid_url = btcid.getAttribute("href");
             }
             else
             {
-                resp.latch_url = "";
+                resp.btcid_url = "";
             }
             sendResponse(resp);            
         }

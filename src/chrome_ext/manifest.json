@@ -1,20 +1,20 @@
 {
   "manifest_version": 2,
 
-  "name": "Latch Login",
-  "description": "Detects whether a site accepts Latch logins, and if so, can call the Latch service on the local machine to generate and send an authentication message to the site.",
+  "name": "BitcoinIdentity Login",
+  "description": "Detects whether a site accepts BitcoinIdentity logins, and if so, can call the BitcoinIdentity service on the local machine to generate and send an authentication message to the site.",
   
   "version": "1.0",
   
   "content_scripts": [
       {
         "matches": ["<all_urls>"],
-        "js": ["latch_content.js"]
+        "js": ["btcid_content.js"]
       }
     ],
     
     "background": {
-        "scripts": ["latch_background.js"]
+        "scripts": ["btcid_background.js"]
       },
 
   "permissions": [
@@ -22,7 +22,7 @@
   ],
   "browser_action": {
     "default_icon": "keyhole.off.jpg",
-    "default_title": "Login with Latch",
+    "default_title": "Login with BitcoinIdentity",
     "default_popup": "popup.html"
   }
 }

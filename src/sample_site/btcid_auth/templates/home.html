@@ -1,0 +1,29 @@
+
+<html lang="en">
+<head>
+    
+    <title>BitcoinIdentityerz</title>
+    <link id="btcid_login" rel="btcid.url" href="{{btcid_url}}">
+    
+</head>
+
+<body>
+    <div id="account_info" >
+        <p style="text-align:right;">
+        {% if user.is_authenticated %}
+            Logged in as: <strong>{{ user.username }}</strong> <a href="/logout_user">Logout</a>
+        {% else %}
+            Login or create an account using your BitcoinIdentity browser extension!
+        {% endif %}
+        </p>
+    </div>
+    <div>
+    <hr/>
+    <p>
+    BTCIDERZ is the registry of real-world names and BitcoinIdentity IDs.<br/> 
+    If you want any of your BitcoinIdentity IDs to be findable under a real-world name by search engines, register them with us, or look them up here!
+    </p>
+    </div>
+</body>
+
+</html>

@@ -16,7 +16,7 @@
     </ul>
     
     <div id="unregistered">IDs not registered at:<strong> {{ site }}</strong></div>
-    <form action="http://localhost:9000/register_id/?latch_url={{site}}" method='POST'> {% csrf_token %}
+    <form action="http://localhost:9000/register_id/?btcid_url={{site}}" method='POST'> {% csrf_token %}
     <ul>
         {% for id_not_at_site in ids_not_at_site %}
         <li>
@@ -27,7 +27,7 @@
     </form>
     {% else %}
     <form action="http://localhost:9000/set_passphrase/" method='POST'> {% csrf_token %}
-        <p>Please enter your wallet passphrase to enable your bitcoin client to sign messages. This needs to be done once whenever the Latch server is restarted.
+        <p>Please enter your wallet passphrase to enable your bitcoin client to sign messages. This needs to be done once whenever the BitcoinIdentity server is restarted.
          </p>
         <p>
         Input wallet passphrase: <input type='password' size=50 name='passphrase_input' /> 

@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     url(r'^set_passphrase/$', 'id_mgr.views.set_passphrase'), 
     url(r'^challenge_response/(?P<identity>.*)$', 'id_mgr.views.challenge_response'),
     url(r'^register_id/$', 'id_mgr.views.register_id'),
-    # url(r'^latch/', include('latch.foo.urls')),
+    # url(r'^btcid/', include('btcid.foo.urls')),
     
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
