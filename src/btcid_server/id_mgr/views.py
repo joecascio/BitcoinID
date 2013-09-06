@@ -12,7 +12,7 @@ from bitcoinrpc.authproxy import AuthServiceProxy, JSONRPCException
 import json
 import traceback
 
-_passphrase = "heplaysagamewithwhichiamnotfamiliar"
+_passphrase = ""
 _btcrpc = AuthServiceProxy("http://%s:%s@127.0.0.1:8332" % (settings.BTC_RPC_USER, settings.BTC_RPC_PW))
 
 def _passphrase_available():
